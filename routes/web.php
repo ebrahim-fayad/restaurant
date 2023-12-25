@@ -5,6 +5,8 @@ use   App\Http\Controllers\HomeController;
 use   App\Http\Controllers\CategoryController;
 use   App\Http\Controllers\MealController;
 use   App\Http\Controllers\FrontController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,10 +28,10 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin','middleware'=>['auth','admin']], function() {
+Route::group(['prefix' => 'admin','middleware'=>['auth']], function() {
     //
-    
-    
+
+
     Route::resources([
         'categories'=>CategoryController::class,
         'meals'=>MealController::class,

@@ -31,8 +31,12 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $path = $request->image->store('public/categories');
+
+        $image = $request->image->getClientOriginalName();
+        $path = $request->image->storeAs('public/categories',$image);
+        $i=1;
         Category::create([
+            'id'=>$i++,
             'name'=>$request->name,
             'image'=>$path,
         ]);
